@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Spring MVC MAX_S.K.</title>
+</head>
+
+<body>
+<h1>Список продуктов:</h1>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Название</td>
+        <td>Цена</td>
+        <td>Действие</td>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*@thymesVar id="students" type="java.util.List<com.geekbrains.spring.mvc.model.Student>"*/-->
+    <tr th:each="p : ${products}">
+        <td> <h2 class="badge badge-light" th:text="${p.id}" /></td>
+        <td> <h2 class="badge badge-light" th:text="${p.title}"/></td>
+        <td> <h2 class="badge badge-light" th:text="${p.cost}" /></td>
+        <td> <a class="btn btn-primary btn-sm" th:href="@{'/products/edit/' + ${p.id}}">Редактировать</a></td>
+    </tr>
+    </tbody>
+</table>
+<td><a th:href="@{/}">На Главную страницу</a> <a th:href="@{/products/addform}">Добавить продукты</a>
+    <br>
+
+    <form th:action="@{/products/find}" method="GET">
+        <input name="id" type="number">
+        <button class="btn btn-primary btn-sm" input type="submit" >Поиск по id"</button>
+    </form>
+
+
+</body>
+</html>
